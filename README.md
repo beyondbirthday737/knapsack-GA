@@ -2,5 +2,5 @@
 Solving Knapsack problem with genetic algorithm
 
 # Tutorial
-1) create a folder called result-files at the root of the project
+1) Dowload the source code 
 2) run pyhton main.py 
