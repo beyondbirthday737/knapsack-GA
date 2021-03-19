@@ -1,5 +1,6 @@
 import random
 from extract_objects import Objects
+import os
 
 
 class Knapsack:
@@ -16,7 +17,7 @@ class Knapsack:
 
 
     def first_population(self):
-        """this function create a random populartion"""
+        """this function create a random population"""
         self.population = [[0 for i in range(self.total_chromosomes)] for i in range(self.total_individual)]
 
         for individual in range(self.total_individual):
@@ -81,22 +82,27 @@ class Knapsack:
         return self
 
 
-    def write_generation_files(self, path):
-            file = open(f"{path}.txt", "a")
-            sorted_indiduals = sorted(self.individual_dic, key = lambda row: row['weight'])
+    def write_bests_indiviaduals_files(self, filename):
+            bests = filter(lambda individual: individual['weight'] <= 400, self.individual_dic)
+            newbests = sorted(bests, key = lambda row: row['fitness'], reverse=True)
 
-            for individual in sorted_indiduals:
-                file.write(f"{individual}\n")
+            if(os.path.exists('./bests-results') == False):
+                os.makedirs('./bests-results')
+                
+            bestsgen_files = open(f"bests-results/{filename}.txt", "a")
+            for individual in newbests:
+                bestsgen_files.write(f"{individual}\n")
+
+            return self
 
 
     def start(self):
-        print("running...")
+        print("\033[1;31mRunning...")
         self.first_population()
         for generation in range(self.total_generations):
             # create a new generation and calculate fitness
             new_generation = [0 for individual in range(self.total_individual)]
             for i in range(self.total_individual):
-                print(f"{self.population[i]}")
                 fitness = self.calc_fitness(self.population[i])
 
             #Select a bests individuals 
@@ -123,12 +129,14 @@ class Knapsack:
                     "weight": self.weight_list[i]
                 })
 
-            path = f'result-files/{generation + 1}'
-            self.write_generation_files(path)
+            path = f'generation {generation + 1}'
+            self.write_bests_indiviaduals_files(path)
             
             self.population = new_generation
             self.fitness_list = []
             self.weight_list = []
             self.individual_dic = []
+
+        print("\033[1;33mDone...\n\033[1;32mFolder 'bests-results' created in project...")
 
 
