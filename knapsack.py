@@ -4,16 +4,21 @@ import os
 
 
 class Knapsack:
-    def __init__(self, total_individual, total_chromosomes, total_generations, objects):
+    def __init__(self, total_individual, total_chromosomes, total_generations, mutation_rate, crossover_rate, elite,  pack_weigth_limit, objects):
         self.total_individual = total_individual
         self.total_chromosomes = total_chromosomes
         self.total_generations = total_generations
+        self.mutation_rate = mutation_rate
+        self.crossover_rate = crossover_rate
+        self.elite = elite
+        self.pack_weigth_limit = pack_weigth_limit
         self.objects = objects.get_objects_list()
         
         self.population = None
         self.fitness_list = []
         self.weight_list = []
         self.individual_dic = []
+
 
 
     def first_population(self):
@@ -56,7 +61,6 @@ class Knapsack:
 
     def mutation(self, index_individual):
         """this function is responsible for making a mutation in the individual"""
-        
         mutated_index = random.randint(0, self.total_chromosomes - 1)
 
         if self.population[index_individual][mutated_index] == 0:
@@ -69,29 +73,24 @@ class Knapsack:
 
     def crossover(self, index_individual1, index_individual2):
         crossover_index = random.randint(1, self.total_chromosomes - 1)
-        
+            
         child1 = self.population[index_individual1][:crossover_index] + self.population[index_individual2][crossover_index:]
         child2 = self.population[index_individual2][:crossover_index] + self.population[index_individual1][crossover_index:]
 
         return child1, child2
 
 
-    def print_population(self):
-        for individual in range(self.total_individual):
-            print(str(individual) + " - [" + ", ".join(str(f) for f in self.population[individual]) + "]")
-        return self
-
-
     def write_bests_indiviaduals_files(self, filename):
-            bests = filter(lambda individual: individual['weight'] <= 400, self.individual_dic)
+            bests = filter(lambda individual: individual['weight'] <= self.pack_weigth_limit, self.individual_dic)
             newbests = sorted(bests, key = lambda row: row['fitness'], reverse=True)
 
             if(os.path.exists('./bests-results') == False):
                 os.makedirs('./bests-results')
                 
             bestsgen_files = open(f"bests-results/{filename}.txt", "a")
-            for individual in newbests:
-                bestsgen_files.write(f"{individual}\n")
+        
+            for ind in range(len(newbests[:self.elite])):
+                bestsgen_files.write(f"{ind} => {newbests[ind]}\n")
 
             return self
 
@@ -129,7 +128,7 @@ class Knapsack:
                     "weight": self.weight_list[i]
                 })
 
-            path = f'generation {generation + 1}'
+            path = f'elite generation {generation + 1}'
             self.write_bests_indiviaduals_files(path)
             
             self.population = new_generation
@@ -137,6 +136,6 @@ class Knapsack:
             self.weight_list = []
             self.individual_dic = []
 
-        print("\033[1;33mDone...\n\033[1;32mFolder 'bests-results' created in project...")
+        print("\033[1;33mDone...\n\033[1;32mFolder 'bests-results' created in project...\033[0;0m")
 
 
