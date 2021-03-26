@@ -10,7 +10,7 @@ A genetic algorithm is a search heuristic that is inspired by Charles Darwin’s
 
 
 
-### Knapsack problem
+## Knapsack problem
 
 The backpack problem Knapsack problem is a combinatorial optimization problem . The name is given due to the model of a situation in which it is necessary to fill a backpack with objects of different weights and values. The goal is to fill the backpack with the highest possible value, not exceeding the maximum weight.
 
@@ -23,12 +23,13 @@ The backpack problem Knapsack problem is a combinatorial optimization problem . 
 For more details see [Wikipedia](https://en.wikipedia.org/wiki/Knapsack_problem).
 
 
+## Solving the Knapsack problem
 
 ### First Population
 
 First step is creating an initial population. N backpacks will be filled with random items until the weight limit is reached.
 
-```
+```python
 import random
 from extract_objects import Objects
 import csv
