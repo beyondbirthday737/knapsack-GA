@@ -10,7 +10,7 @@ A genetic algorithm is a search heuristic that is inspired by Charles Darwin’s
 
 
 
-## Knapsack problem
+<h2>Knapsack problem</h2>
 
 The backpack problem Knapsack problem is a combinatorial optimization problem . The name is given due to the model of a situation in which it is necessary to fill a backpack with objects of different weights and values. The goal is to fill the backpack with the highest possible value, not exceeding the maximum weight.
 
@@ -23,9 +23,9 @@ The backpack problem Knapsack problem is a combinatorial optimization problem . 
 For more details see [Wikipedia](https://en.wikipedia.org/wiki/Knapsack_problem).
 
 
-## Solving the Knapsack problem
+<h2>Solving the Knapsack problem</h2>
 
-### First Population
+<h3>First Population</h2>
 
 First step is creating an initial population. N backpacks will be filled with random items until the weight limit is reached.
 
@@ -64,4 +64,25 @@ class Knapsack:
         return self
 ```
 
+<h3>Calculate Fitness</h3>
 
+In this step we will implement the function to calculate the fitness score
+
+```python
+def calc_fitness(self, individual):
+    """calculate individual fitness"""
+    sum_weight = 0
+    fitness = 0
+    index = 1
+        
+    for gen in individual:
+        if gen == 1:
+            sum_weight += int(self.objects[index].split(';')[1])
+            fitness += int(self.objects[index].split(';')[2])
+        index += 1
+
+    self.weight_list.append(sum_weight)
+    self.fitness_list.append(fitness)
+    return fitness, sum_weight
+
+```
