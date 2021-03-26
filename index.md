@@ -86,3 +86,5 @@ def calc_fitness(self, individual):
     return fitness, sum_weight
 
 ```
+
+
