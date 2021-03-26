@@ -1,13 +1,12 @@
 ## What is Genetic algorithms ?
 
-You can use the [editor on GitHub](https://github.com/gustavors22/knapsack-genetic-algorithm/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+A genetic algorithm is a search heuristic that is inspired by Charles Darwin’s theory of natural evolution. This algorithm reflects the process of natural selection where the fittest individuals are selected for reproduction in order to produce offspring of the next generation.
 
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
+[Link](https://www.google.com/url?sa=i&url=https%3A%2F%2Fpastmike.com%2Fwhat-is-a-genetic-algorithm%2F&psig=AOvVaw07hazwPXi6Tcu2m-js1V50&ust=1616867502290000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLingoXDzu8CFQAAAAAdAAAAABAQ) and ![Image](https://www.google.com/url?sa=i&url=https%3A%2F%2Fpastmike.com%2Fwhat-is-a-genetic-algorithm%2F&psig=AOvVaw07hazwPXi6Tcu2m-js1V50&ust=1616867502290000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLingoXDzu8CFQAAAAAdAAAAABAQ)
 ```markdown
 Syntax highlighted code block
 
