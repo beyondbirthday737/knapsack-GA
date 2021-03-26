@@ -86,3 +86,19 @@ def calc_fitness(self, individual):
     return fitness, sum_weight
 
 ```
+
+<h3>Tournament Selection</h3>
+
+Tournament selection is a method of selecting an individual from a population of individuals in a genetic algorithm. Tournament selection involves running several "tournaments" among a few individuals chosen at random from the population. The winner of each tournament (the one with the best fitness) is selected for crossover
+
+```python        
+def tournament_selection(self, index_individual1, index_individual2):
+    """This function select the best individual"""
+    if(abs(self.fitness_list[index_individual1]) > abs(self.fitness_list[index_individual2])):
+        winner_index = index_individual1
+    else:
+        winner_index = index_individual2
+        
+    return winner_index
+
+```
