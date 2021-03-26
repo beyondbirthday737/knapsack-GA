@@ -24,10 +24,44 @@ For more details see [Wikipedia](https://en.wikipedia.org/wiki/Knapsack_problem)
 
 
 
-### Jekyll Themes
+### First Population
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/gustavors22/knapsack-genetic-algorithm/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+First step is creating an initial population. N backpacks will be filled with random items until the weight limit is reached.
 
+```
+import random
+from extract_objects import Objects
+import csv
+import os
+
+
+class Knapsack:
+    def __init__(self, total_individual, total_chromosomes, total_generations, mutation_rate, crossover_rate, elite,  pack_weigth_limit, objects):
+        self.total_individual = total_individual
+        self.total_chromosomes = total_chromosomes
+        self.total_generations = total_generations
+        self.mutation_rate = mutation_rate
+        self.crossover_rate = crossover_rate
+        self.elite = elite
+        self.pack_weigth_limit = pack_weigth_limit
+        self.objects = objects.get_objects_list()
+        
+        self.population = None
+        self.fitness_list = []
+        self.weight_list = []
+        self.individual_dic = []
+
+
+    def first_population(self):
+        """this function create a random population"""
+        self.population = [[0 for i in range(self.total_chromosomes)] for i in range(self.total_individual)]
+
+        for individual in range(self.total_individual):
+            for chromosome in range(self.total_chromosomes):
+                self.population[individual][chromosome] = random.randint(0, 1)
+            
+        return self
+```
 ### Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
