@@ -98,7 +98,25 @@ def tournament_selection(self, index_individual1, index_individual2):
         winner_index = index_individual1
     else:
         winner_index = index_individual2
-        
+
     return winner_index
+
+```
+
+
+<h3>Mutation</h3>
+
+The classic example of a mutation operator involves a probability that an arbitrary bit in a genetic sequence will be flipped from its original state. A common method of implementing the mutation operator involves generating a random variable for each bit in a sequence. This random variable tells whether or not a particular bit will be flipped. This mutation procedure, based on the biological point mutation, is called single point mutation. Other types are inversion and floating point mutation. When the gene encoding is restrictive as in permutation problems, mutations are swaps, inversions, and scrambles.
+
+```python
+def mutation(self, index_individual):
+    """this function is responsible for making a mutation in the individual"""
+    mutated_index = random.randint(0, self.total_chromosomes - 1)
+    if self.population[index_individual][mutated_index] == 0:
+        self.population[index_individual][mutated_index] = 1
+    else:
+        self.population[index_individual][mutated_index] = 0
+
+    return self
 
 ```
