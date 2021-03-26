@@ -2,28 +2,14 @@
 
 A genetic algorithm is a search heuristic that is inspired by Charles Darwin’s theory of natural evolution. This algorithm reflects the process of natural selection where the fittest individuals are selected for reproduction in order to produce offspring of the next generation.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<a href='https://pastmike.com/what-is-a-genetic-algorithm/'>
+  <img src='https://pastmike.com/wp-content/uploads/2018/08/genetic.png' >
+</a>
 
-<img src='https://pastmike.com/wp-content/uploads/2018/08/genetic.png'>
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+### Knapsack problem
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
