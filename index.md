@@ -139,8 +139,6 @@ def crossover(self, index_individual1, index_individual2):
 
 <h2>References</h2>
 
-* <a href='https://towardsdatascience.com/introduction-to-genetic-algorithms-including-example-code-e396e98d8bf3#:~:text=A%20genetic%20algorithm%20is%20a,offspring%20of%20the%20next%20generation.'>
-Introduction to Genetic Algorithms — Including Example Code
-</a>
+* <a href='https://towardsdatascience.com/introduction-to-genetic-algorithms-including-example-code-e396e98d8bf3#:~:text=A%20genetic%20algorithm%20is%20a,offspring%20of%20the%20next%20generation.'>Introduction to Genetic Algorithms — Including Example Code</a>
 
 * <a href='https://en.wikipedia.org/wiki/Genetic_algorithm'>Genetic algorith wikipedia</a>
