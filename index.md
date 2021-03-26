@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## What is Genetic algorithms ?
 
 You can use the [editor on GitHub](https://github.com/gustavors22/knapsack-genetic-algorithm/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
