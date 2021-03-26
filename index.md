@@ -30,12 +30,6 @@ For more details see [Wikipedia](https://en.wikipedia.org/wiki/Knapsack_problem)
 First step is creating an initial population. N backpacks will be filled with random items until the weight limit is reached.
 
 ```python
-import random
-from extract_objects import Objects
-import csv
-import os
-
-
 class Knapsack:
     def __init__(self, total_individual, total_chromosomes, total_generations, mutation_rate, crossover_rate, elite,  pack_weigth_limit, objects):
         self.total_individual = total_individual
