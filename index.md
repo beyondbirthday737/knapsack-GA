@@ -25,7 +25,7 @@ For more details see [Wikipedia](https://en.wikipedia.org/wiki/Knapsack_problem)
 
 <h2>Solving the Knapsack problem</h2>
 
-<h3>First Population</h2>
+<h3>First Population</h3>
 
 First step is creating an initial population. N backpacks will be filled with random items until the weight limit is reached.
 
@@ -86,5 +86,3 @@ def calc_fitness(self, individual):
     return fitness, sum_weight
 
 ```
-
-
