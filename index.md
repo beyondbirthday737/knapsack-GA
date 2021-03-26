@@ -6,7 +6,7 @@ A genetic algorithm is a search heuristic that is inspired by Charles Darwin’s
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-[Link](https://www.google.com/url?sa=i&url=https%3A%2F%2Fpastmike.com%2Fwhat-is-a-genetic-algorithm%2F&psig=AOvVaw07hazwPXi6Tcu2m-js1V50&ust=1616867502290000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLingoXDzu8CFQAAAAAdAAAAABAQ) and ![Image](https://www.google.com/url?sa=i&url=https%3A%2F%2Fpastmike.com%2Fwhat-is-a-genetic-algorithm%2F&psig=AOvVaw07hazwPXi6Tcu2m-js1V50&ust=1616867502290000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLingoXDzu8CFQAAAAAdAAAAABAQ)
+<img src='https://pastmike.com/wp-content/uploads/2018/08/genetic.png'>
 ```markdown
 Syntax highlighted code block
 
