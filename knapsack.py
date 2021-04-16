@@ -1,5 +1,6 @@
 import random
 from extract_objects import Objects
+import csv
 import os
 
 
@@ -20,7 +21,6 @@ class Knapsack:
         self.individual_dic = []
 
 
-
     def first_population(self):
         """this function create a random population"""
         self.population = [[0 for i in range(self.total_chromosomes)] for i in range(self.total_individual)]
@@ -39,7 +39,7 @@ class Knapsack:
         index = 1
         
         for gen in individual:
-            if gen == 1 and sum_weight <= 400:
+            if gen == 1 and sum_weight <= self.pack_weigth_limit:
                 sum_weight += int(self.objects[index].split(';')[1])
                 fitness += int(self.objects[index].split(';')[2])
             index += 1
@@ -49,7 +49,7 @@ class Knapsack:
         return fitness, sum_weight
 
         
-    def championship(self, index_individual1, index_individual2):
+    def tournament_selection(self, index_individual1, index_individual2):
         """This function select the best individual"""
         if(abs(self.fitness_list[index_individual1]) > abs(self.fitness_list[index_individual2])):
             winner_index = index_individual1
@@ -73,24 +73,37 @@ class Knapsack:
 
     def crossover(self, index_individual1, index_individual2):
         crossover_index = random.randint(1, self.total_chromosomes - 1)
-            
+        
         child1 = self.population[index_individual1][:crossover_index] + self.population[index_individual2][crossover_index:]
         child2 = self.population[index_individual2][:crossover_index] + self.population[index_individual1][crossover_index:]
 
         return child1, child2
 
 
-    def write_bests_indiviaduals_files(self, filename):
-            bests = filter(lambda individual: individual['weight'] <= self.pack_weigth_limit, self.individual_dic)
-            newbests = sorted(bests, key = lambda row: row['fitness'], reverse=True)
+    def ranking(self):
+        bests = filter(lambda individual: individual['weight'] <= self.pack_weigth_limit, self.individual_dic)
+        return sorted(bests, key = lambda row: row['fitness'], reverse=True)
 
+
+    def write_bests_indiviaduals_files(self, filename):
+            bests = self.ranking()
+
+            print(f"\n\033[1;33mBest individual in {filename} => {bests[0]}\033[0;0\n")
+            
             if(os.path.exists('./bests-results') == False):
                 os.makedirs('./bests-results')
                 
-            bestsgen_files = open(f"bests-results/{filename}.txt", "a")
-        
-            for ind in range(len(newbests[:self.elite])):
-                bestsgen_files.write(f"{ind} => {newbests[ind]}\n")
+            csv_file = f"{filename}.csv"
+            csv_columns = ['id', 'dna', 'fitness', 'weight']
+
+            try:
+                with open("./bests-results/" + csv_file, 'w') as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
+                    writer.writeheader()
+                    for individual in range(len(bests[:self.elite])):
+                        writer.writerow(bests[individual])
+            except IOError:
+                print('I/O error')
 
             return self
 
@@ -101,12 +114,13 @@ class Knapsack:
         for generation in range(self.total_generations):
             # create a new generation and calculate fitness
             new_generation = [0 for individual in range(self.total_individual)]
+
             for i in range(self.total_individual):
                 fitness = self.calc_fitness(self.population[i])
 
             #Select a bests individuals 
             for i in range(self.total_individual):
-                winner_individual = self.championship(i, self.total_individual -1 -i)
+                winner_individual = self.tournament_selection(i, self.total_individual -1 -i)
                 new_generation[i] = self.population[winner_individual]
             
             # make mutations
@@ -128,9 +142,10 @@ class Knapsack:
                     "weight": self.weight_list[i]
                 })
 
-            path = f'elite generation {generation + 1}'
-            self.write_bests_indiviaduals_files(path)
-            
+            if(generation + 1 == 1 or generation + 1 == 800):
+                path = f'elite generation {generation + 1}'
+                self.write_bests_indiviaduals_files(path)
+   
             self.population = new_generation
             self.fitness_list = []
             self.weight_list = []
